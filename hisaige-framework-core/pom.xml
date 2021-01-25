@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jar-hisaige-dependencies</artifactId>
+        <groupId>hisaige</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hisaige-framework-core</artifactId>
+    <description>web应用基础包</description>
+
+   <dependencies>
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-web</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-aop</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.commons</groupId>
+           <artifactId>commons-lang3</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>com.alibaba</groupId>
+           <artifactId>fastjson</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>commons-io</groupId>
+           <artifactId>commons-io</artifactId>
+       </dependency>
+       <!--编解码-->
+       <dependency>
+           <groupId>commons-codec</groupId>
+           <artifactId>commons-codec</artifactId>
+       </dependency>
+       <!--糊涂 -->
+       <dependency>
+           <groupId>cn.hutool</groupId>
+           <artifactId>hutool-all</artifactId>
+       </dependency>
+       <!--持久化 -->
+       <dependency>
+           <groupId>javax.persistence</groupId>
+           <artifactId>persistence-api</artifactId>
+       </dependency>
+       <!-- 校验 -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-validation</artifactId>
+       </dependency>
+
+       <!-- mapstruct支持 -->
+       <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-jdk8 -->
+       <dependency>
+           <groupId>org.mapstruct</groupId>
+           <artifactId>mapstruct-jdk8</artifactId>
+           <version>1.2.0.Final</version>
+       </dependency>
+
+       <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+       <dependency>
+           <groupId>org.mapstruct</groupId>
+           <artifactId>mapstruct-processor</artifactId>
+           <version>1.2.0.Final</version>
+       </dependency>
+
+       <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+       <dependency>
+           <groupId>org.mapstruct</groupId>
+           <artifactId>mapstruct</artifactId>
+           <version>1.2.0.Final</version>
+       </dependency>
+
+   </dependencies>
+
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>repackage</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
+
+</project>

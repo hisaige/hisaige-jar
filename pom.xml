@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>hisaige</groupId>
+    <artifactId>jar-hisaige-dependencies</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>hisaige-jar</name>
+    <description>jar-hisaige-parent</description>
+    <modules>
+
+        <module>hisaige-framework-core</module>
+        <module>hisaige-log-core</module>
+        <module>hisaige-file-core</module>
+        <module>hisaige-database-core</module>
+        <module>hisaige-redis-core</module>
+        <module>hisaige-event-core</module>
+        <module>hisaige-swagger-core</module>
+        <module>hisaige-security-core</module>
+        <module>hisaige-i18n-core</module>
+    </modules>
+
+    <properties>
+        <project.version>1.0.0</project.version>
+		<hisaige.jar.version>1.0.0</hisaige.jar.version>
+		<springboot.version>2.3.4.RELEASE</springboot.version>
+		<springcloud.alibaba.version>2.2.3.RELEASE</springcloud.alibaba.version>
+
+        <io.springfox.version>2.9.2</io.springfox.version>
+        <io.swagger.version>1.6.1</io.swagger.version>
+
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <skipTests>true</skipTests>
+
+        <jjwt.version>0.9.0</jjwt.version>
+        <hutool.version>4.5.7</hutool.version>
+
+        <druid.springboot.version>1.1.21</druid.springboot.version>
+        <pagehelper.springboot.version>1.2.10</pagehelper.springboot.version>
+        <mapper.springboot.version>2.1.5</mapper.springboot.version>
+        <mybatis.plus.version>3.4.0</mybatis.plus.version>
+        <mybatis.generator.version>1.3.7</mybatis.generator.version>
+        <velocity.engine.version>2.2</velocity.engine.version>
+        <fastjson.alibaba.version>1.2.74</fastjson.alibaba.version>
+        <commons-io-version>2.6</commons-io-version>
+        <google.guava.version>29.0-jre</google.guava.version>
+        <javax.persistence.version>1.0</javax.persistence.version>
+        <aliyun.oss.version>3.8.0</aliyun.oss.version>
+
+    </properties>
+
+    <!-- 在这里声明所有子模块， 子模块之间引用时可不用写版本号 -->
+    <dependencyManagement>
+        <dependencies>
+			
+			<!--springboot版本声明-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>hisaige</groupId>
+                <artifactId>hisaige-framework-core</artifactId>
+                <version>${hisaige.jar.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>hisaige</groupId>
+                <artifactId>hisaige-swagger-core</artifactId>
+                <version>${hisaige.jar.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>hisaige</groupId>
+                <artifactId>hisaige-redis-core</artifactId>
+                <version>${hisaige.jar.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>hisaige</groupId>
+                <artifactId>hisaige-security-core</artifactId>
+                <version>${hisaige.jar.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>hisaige</groupId>
+                <artifactId>hisaige-database-core</artifactId>
+                <version>${hisaige.jar.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>hisaige</groupId>
+                <artifactId>hisaige-i18n-core</artifactId>
+                <version>${hisaige.jar.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>hisaige</groupId>
+                <artifactId>hisaige-file-core</artifactId>
+                <version>${hisaige.jar.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun.oss.version}</version>
+            </dependency>
+
+            <!--JWT-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!--代码生成-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.engine.version}</version>
+            </dependency>
+
+            <!--IO -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io-version}</version>
+            </dependency>
+
+            <!--JSON -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.alibaba.version}</version>
+            </dependency>
+
+            <!-- 分页插件 文档地址：https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md -->
+            <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+            <!--        <dependency>
+                        <groupId>com.github.pagehelper</groupId>
+                        <artifactId>pagehelper</artifactId>
+                        <version>5.1.10</version>
+                    </dependency>-->
+
+            <!--MyBatis分页插件-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${mapper.springboot.version}</version>
+            </dependency>
+
+            <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter &ndash;&gt;-->
+            <!--<dependency>-->
+            <!--<groupId>com.alibaba</groupId>-->
+            <!--<artifactId>druid-spring-boot-starter</artifactId>-->
+            <!--<version>1.1.18</version>-->
+            <!--</dependency>-->
+
+            <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis.generator.version}</version>
+            </dependency>
+
+            <!--guava-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google.guava.version}</version>
+            </dependency>
+            <!--持久化工具类 -->
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>persistence-api</artifactId>
+                <version>${javax.persistence.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <skipTests>true</skipTests>    <!--默认关掉单元测试  全部批量打包用这个-->
+                </configuration>
+            </plugin>
+            <!--<plugin>-->
+            <!--&lt;!&ndash;关掉单元测试 -<skipTests>true</skipTests>  单个应用模块打包用这个&ndash;&gt;-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--<configuration>-->
+            <!--<fork>true</fork>-->
+            <!--<addResources>true</addResources>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
+        </plugins>
+    </build>
+</project>
