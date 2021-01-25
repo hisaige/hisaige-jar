@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.hisaige.dbcore.controller.BaseController;
+import com.hisaige.dbcore.mapper.BaseMapper;
 import com.hisaige.dbcore.service.BaseService;
 import com.hisaige.dbcore.service.impl.BaseServiceImpl;
 import org.slf4j.Logger;
@@ -148,7 +149,7 @@ public class CodeGenerator {
         strategy.setSuperControllerClass(BaseController.class);
         strategy.setSuperServiceClass(BaseService.class);
         strategy.setSuperServiceImplClass(BaseServiceImpl.class);
-        strategy.setSuperMapperClass("com.hisaige.core.db.mapper.BaseMapper");
+        strategy.setSuperMapperClass("com.hisaige.dbcore.mapper.BaseMapper");
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");//也即不自动生成的字段
         //表名，多个英文逗号分割
