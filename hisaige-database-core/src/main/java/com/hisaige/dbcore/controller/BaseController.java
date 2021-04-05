@@ -25,7 +25,6 @@ import tk.mybatis.mapper.util.Assert;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +47,7 @@ public class BaseController<S extends BaseService<T>, T> {
     @GetMapping("/get/{id}")
     @ResponseBody
     @ApiOperation("根据id获取")
-    public AjaxMessageRes<T> get(@PathVariable("id") Serializable id){
+    public AjaxMessageRes<T> get(@PathVariable("id") Serializable id) throws Exception {
         Assert.notNull(id, "msg.id.blank");
         return new AjaxMessageRes<>(service.get(id));
     }
@@ -56,7 +55,7 @@ public class BaseController<S extends BaseService<T>, T> {
     @GetMapping("/getByParams")
     @ResponseBody
     @ApiOperation("根据id获取")
-    public AjaxMessageRes<Object> getByParams(){
+    public AjaxMessageRes<Object> getByParams() throws Exception {
         LinkedHashMap<String, String[]> reqParamsMap = new LinkedHashMap<>();
         HttpServletRequest request = RequestUtils.getRequest();
         if(null != request){
@@ -69,7 +68,7 @@ public class BaseController<S extends BaseService<T>, T> {
     @PostMapping("/create")
     @ResponseBody
     @ApiOperation("根据实体创建,如果创建成功返回的msg为回填的主键值，注意如果多个主键只返回第一个")
-    public AjaxMessageRes<Object> create(@RequestBody @Validated({AddGroup.class}) T t) throws InvocationTargetException, IllegalAccessException {
+    public AjaxMessageRes<Object> create(@RequestBody @Validated({AddGroup.class}) T t) throws Exception {
         service.saveSelective(t);
         Set<EntityColumn> pkColumns = EntityHelper.getPKColumns(service.getEntityClass());
         EntityColumn next = pkColumns.iterator().next();
@@ -84,21 +83,21 @@ public class BaseController<S extends BaseService<T>, T> {
     @PostMapping("/creates")
     @ResponseBody
     @ApiOperation("根据实体批量创建")
-    public AjaxMessageRes<Integer> create(@RequestBody @Validated({AddGroup.class}) List<T> records){
+    public AjaxMessageRes<Integer> create(@RequestBody @Validated({AddGroup.class}) List<T> records) throws Exception {
         return new AjaxMessageRes<>(service.saveAll(records));
     }
 
     @PutMapping("/update")
     @ResponseBody
     @ApiOperation("根据实体更新")
-    public AjaxMessageRes<Integer> updateByPrimaryKeySelective(@RequestBody @Validated({EditGroup.class}) T t){
+    public AjaxMessageRes<Integer> updateByPrimaryKeySelective(@RequestBody @Validated({EditGroup.class}) T t) throws Exception {
         return new AjaxMessageRes<>(service.updateByPrimaryKeySelective(t));
     }
 
     @DeleteMapping("/del/{id}")
     @ResponseBody
     @ApiOperation("根据id删除")
-    public AjaxMessageRes<Boolean> delete(@PathVariable("id") Serializable id){
+    public AjaxMessageRes<Boolean> delete(@PathVariable("id") Serializable id) throws Exception {
         Assert.notNull(id, "msg.id.blank");
         return new AjaxMessageRes<>(service.delById(id));
     }
@@ -106,7 +105,7 @@ public class BaseController<S extends BaseService<T>, T> {
     @GetMapping("/search")
     @ResponseBody
     @ApiOperation("根据实体条件检索")
-    public AjaxMessageRes<Object> search(PageReq pageDTO, T record){
+    public AjaxMessageRes<Object> search(PageReq pageDTO, T record) throws Exception {
         if(null != pageDTO.getPageSize() && null != pageDTO.getPageNum()) {
             //分页模式
             PageHelper.startPage(pageDTO.getPageNum(), pageDTO.getPageSize());
@@ -119,7 +118,7 @@ public class BaseController<S extends BaseService<T>, T> {
     @PostMapping("/get/ids")
     @ResponseBody
     @ApiOperation("根据ID列表检索")
-    public AjaxMessageRes<List<T>> search(@RequestBody List<Long> ids) {
+    public AjaxMessageRes<List<T>> search(@RequestBody List<Long> ids) throws Exception {
         return new AjaxMessageRes<>(service.getByIds(ids));
     }
 }

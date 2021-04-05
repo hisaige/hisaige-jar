@@ -2,6 +2,7 @@ package com.hisaige.web.core.entity.domain;
 
 import com.hisaige.web.core.entity.enums.ReturnCodeEnum;
 import com.hisaige.web.core.exception.InvalidException;
+import com.hisaige.web.core.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
@@ -45,13 +46,14 @@ public class AjaxExceptionRes extends AjaxMessageRes<Object> {
             desc = ((InvalidException) e).getDesc();
         } else if(e.getCause() instanceof InvalidException) {
             returnCodeEnum = ((InvalidException) e.getCause()).getReturnCodeEnum();
+            desc = ((InvalidException) e.getCause()).getDesc();
         } else {
             returnCodeEnum = ReturnCodeEnum.SERVER_EXCEPTION;
             desc = ": " +e.getLocalizedMessage();
         }
         this.setCode(returnCodeEnum.getCode());
         //这里可以根据国际化 Locale 来做国际化处理，暂时先返回中文
-        this.setDesc(returnCodeEnum.getDesc_CN());
+        this.setDesc(StringUtils.isEmpty(desc) ?returnCodeEnum.getDesc_CN():returnCodeEnum.getDesc_CN() + ":" + desc);
     }
 
 }

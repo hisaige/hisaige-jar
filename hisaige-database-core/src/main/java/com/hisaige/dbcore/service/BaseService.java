@@ -21,27 +21,29 @@ public interface BaseService<T> {
      * @param id
      * @return
      */
-    T get(Serializable id);
+    T get(Serializable id) throws Exception;
+
+    List<T> getByExample(Example example);
 
     /**
      * 通用请求接口
      * @param paramsMap 参数对象
      * @return 如果带了分页参数currentPage和pageSize，则返回分页对象PageRes，否则返回list
      */
-    Object getByParams(Map<String, String[]> paramsMap);
+    Object getByParams(Map<String, String[]> paramsMap)throws Exception;
 
     /**
      * 根据实体中不为空的属性查询，sql使用等号拼接
      * @param t
      * @return List<T>
      */
-    List<T> get(T t);
+    List<T> get(T t)throws Exception;
 
     /**
      * 获取所有实体对象
      * @return List<T>
      */
-    List<T> getAll();
+    List<T> getAll()throws Exception;
 
     /**
      * 根据实体查询,实体继承TimeSearchDTO
@@ -49,30 +51,30 @@ public interface BaseService<T> {
      * @param pageDTO 查询实体
      * @return List<T>
      */
-    List<T> getByProvider(PageReq pageDTO, T record);
+    List<T> getByProvider(PageReq pageDTO, T record)throws Exception;
 
-    List<T> getByProvider(T record);
+    List<T> getByProvider(T record)throws Exception;
 
     /**
      * 保存实体， 主键会回写到实体中，可以从实体中获取主键
      * @param record 保存实体
      * @return String 实体ID
      */
-    int save(T record);
+    int save(T record)throws Exception;
 
     /**
      * 保存实体，不为null的字段
      * @param record 实体信息
      * @return String 实体ID
      */
-    int saveSelective(T record);
+    int saveSelective(T record)throws Exception;
 
     /**
      * 保存全部
      * @param records
      * @return
      */
-    int saveAll(List<T> records);
+    int saveAll(List<T> records)throws Exception;
 
 
     /**
@@ -80,7 +82,7 @@ public interface BaseService<T> {
      * @param record 待修改的实体对象
      * @return 执行成功数
      */
-    int updateByPrimaryKey(T record);
+    int updateByPrimaryKey(T record)throws Exception;
 
 
     /**
@@ -88,7 +90,7 @@ public interface BaseService<T> {
      * @param record 待修改的实体对象
      * @return 执行成功数
      */
-    int updateByPrimaryKeySelective(T record);
+    int updateByPrimaryKeySelective(T record)throws Exception;
 
     /**
      * 删除实体对象
@@ -102,21 +104,21 @@ public interface BaseService<T> {
      * @param id
      * @return boolean
      */
-    boolean delById(Serializable id);
+    boolean delById(Serializable id)throws Exception;
 
     /**
      * 判断是否存在
      * @param id id
      * @return boolean
      */
-    boolean existsWithPrimaryKey(Serializable id);
+    boolean existsWithPrimaryKey(Serializable id)throws Exception;
 
     /**
      * 根据id列表获取
      * @param ids id列表
      * @return List<T>
      */
-    List<T> getByIds(Iterable<? extends Serializable> ids);
+    List<T> getByIds(Iterable<? extends Serializable> ids)throws Exception;
 
     /**
      * 获取实体类的表名

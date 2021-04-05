@@ -35,12 +35,17 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     public MAPPER mapper;
 
     @Override
-    public T get(Serializable id){
+    public T get(Serializable id)throws Exception {
         return mapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public Object getByParams(Map<String, String[]> paramsMap) {
+    public List<T> getByExample(Example example) {
+        return mapper.selectByExample(example);
+    }
+
+    @Override
+    public Object getByParams(Map<String, String[]> paramsMap)throws Exception {
         Example example = new Example(getEntityClass());
         Example.Criteria criteria = example.createCriteria();
 
@@ -53,18 +58,18 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     }
 
     @Override
-    public List<T> get(T t) {
+    public List<T> get(T t)throws Exception {
         Assert.notNull(t, "msg.provider.null, clazz:" + t.getClass().getSimpleName());
         return mapper.select(t);
     }
 
     @Override
-    public List<T> getAll(){
+    public List<T> getAll()throws Exception{
         return mapper.selectAll();
     }
 
     @Override
-    public List<T> getByProvider(PageReq pageDTO, T record) {
+    public List<T> getByProvider(PageReq pageDTO, T record)throws Exception {
 //        Assert.notNull(record, "msg.provider.null, clazz:" + record.getClass().getSimpleName());
         Example example = new Example(getEntityClass());
 
@@ -98,7 +103,7 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     }
 
     @Override
-    public List<T> getByProvider(T record) {
+    public List<T> getByProvider(T record)throws Exception {
         Assert.notNull(record, "msg.provider.null, clazz:" + record.getClass().getSimpleName());
         if(record instanceof TimeSearchDTO){
             Example example = new Example(getEntityClass());
@@ -117,7 +122,7 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     }
 
     @Override
-    public int save(T record){
+    public int save(T record)throws Exception{
         assert null != record;
         setDateTime(record);
         int insert = mapper.insert(record);
@@ -126,7 +131,7 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     }
 
     @Override
-    public int saveSelective(T record) {
+    public int saveSelective(T record) throws Exception {
         assert null != record;
         setDateTime(record);
         int insert = mapper.insertSelective(record);
@@ -135,7 +140,7 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     }
 
     @Override
-    public int saveAll(List<T> records) {
+    public int saveAll(List<T> records)throws Exception {
         if(!CollectionUtils.isEmpty(records)){
 
             if(DateTimePO.class.isAssignableFrom(getEntityClass())){
@@ -155,14 +160,14 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     }
 
     @Override
-    public int updateByPrimaryKey(T record) {
+    public int updateByPrimaryKey(T record)throws Exception {
         int update = mapper.updateByPrimaryKey(record);
         logger.info("updateByPrimaryKey {}:{}, active:{}", record.getClass().getSimpleName(), record, update);
         return update;
     }
 
     @Override
-    public int updateByPrimaryKeySelective(T record) {
+    public int updateByPrimaryKeySelective(T record)throws Exception {
         int update = mapper.updateByPrimaryKeySelective(record);
         logger.info("updateByPrimaryKeySelective {}:{}, active:{}", record.getClass().getSimpleName(), record, update);
         return update;
@@ -176,7 +181,7 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     }
 
     @Override
-    public boolean delById(Serializable id){
+    public boolean delById(Serializable id)throws Exception{
         T t = mapper.selectByPrimaryKey(id);
         if (null != t){
             int del = mapper.deleteByPrimaryKey(id);
@@ -192,7 +197,7 @@ public class BaseServiceImpl<MAPPER extends BaseMapper<T>, T> implements BaseSer
     }
 
     @Override
-    public List<T> getByIds(Iterable<? extends Serializable> ids) {
+    public List<T> getByIds(Iterable<? extends Serializable> ids)throws Exception {
         if(null == ids || !ids.iterator().hasNext()){
             return new ArrayList<>();
         }
